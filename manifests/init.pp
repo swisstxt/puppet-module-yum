@@ -20,6 +20,11 @@ class yum {
         require => Package[yum-cron],
     }
 
+    include yum::$operatingsystem$lsbdistrelease
+}
+
+class yum::centos5 {
+
     # set the mirror
     $rpm_mirror_real = $rpm_mirror ? {
         '' => "yum.ww2.ch", 
@@ -41,45 +46,45 @@ class yum {
 
     # puzzle repos
     yumrepo { puzzle_base:
-        descr => "CentOS-$releasever - Base",
-        baseurl => "http://${rpm_mirror_real}/centos/$releasever/$basearch/RPMS.os",
+        descr => 'CentOS-$releasever - Base',
+        baseurl => "http://${rpm_mirror_real}/centos/\$releasever/\$basearch/RPMS.os",
         enabled => 1,
         gpgcheck => 1,
-        gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-$releasever",
+        gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-$releasever',
         priority => 1,
     }
     yumrepo { puzzle_updates:
-        descr => "CentOS-$releasever - Updates",
-        baseurl => "http://${rpm_mirror_real}/centos/$releasever/$basearch/RPMS.updates",
+        descr => 'CentOS-$releasever - Updates',
+        baseurl => "http://${rpm_mirror_real}/centos/\$releasever/\$basearch/RPMS.updates",
         enabled => 1,
         gpgcheck => 1,
-        gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-$releasever",
+        gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-$releasever',
         priority => 1,
     }
     yumrepo { puzzle_extras:
-        descr => "CentOS-$releasever - Extras",
-        baseurl => "http://${rpm_mirror_real}/centos/$releasever/$basearch/RPMS.extras",
+        descr => 'CentOS-$releasever - Extras',
+        baseurl => "http://${rpm_mirror_real}/centos/\$releasever/\$basearch/RPMS.extras",
         enabled => 1,
         gpgcheck => 0,
         priority => 1,
     }
     yumrepo { puzzle_fasttrack:
-        descr => "CentOS-$releasever - Fasttrack",
-        baseurl => "http://${rpm_mirror_real}/centos/$releasever/$basearch/RPMS.fasttrack",
+        descr => 'CentOS-$releasever - Fasttrack',
+        baseurl => "http://${rpm_mirror_real}/centos/\$releasever/\$basearch/RPMS.fasttrack",
         enabled => 1,
         gpgcheck => 0,
         priority => 1,
     }
     yumrepo { puzzle_misc:
-        descr => "CentOS-$releasever - ww2k",
-        baseurl => "http://${rpm_mirror_real}/centos/$releasever/$basearch/RPMS.misc",
+        descr => 'CentOS-$releasever - ww2k',
+        baseurl => "http://${rpm_mirror_real}/centos/\$releasever/\$basearch/RPMS.misc",
         enabled => 1,
         gpgcheck => 0,
         priority => 1,
     }
     yumrepo { puzzle_ww2k:
-        descr => "CentOS-$releasever - ww2k",
-        baseurl => "http://${rpm_mirror_real}/centos/$releasever/$basearch/RPMS.ww2k",
+        descr => 'CentOS-$releasever - ww2k',
+        baseurl => "http://${rpm_mirror_real}/centos/\$releasever/\$basearch/RPMS.ww2k",
         enabled => 1,
         gpgcheck => 0,
         priority => 2,
