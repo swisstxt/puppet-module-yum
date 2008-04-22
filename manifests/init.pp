@@ -20,7 +20,13 @@ class yum {
         require => Package[yum-cron],
     }
 
-    include yum::$operatingsystem$lsbdistrelease
+    case $operatingsystem {
+        centos: { 
+            case $lsbdistrelease {
+                5: { include yum::centos5 } 
+            }
+        }
+    }
 }
 
 class yum::centos5 {
