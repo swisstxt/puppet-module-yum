@@ -32,7 +32,7 @@ class yum {
         enabled => 0,
         require => Package[yum-priorities],
     }
-    yumrepo { [ "centosplus", "contrib" ] :
+    yumrepo { "contrib" :
         priority => 2,
         enabled => 0,
         require => Package[yum-priorities],
