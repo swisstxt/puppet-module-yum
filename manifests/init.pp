@@ -38,7 +38,6 @@ class yum {
 
 class yum::centos::five {
     file{[ "/etc/yum.repos.d/base.repo",
-           "/etc/yum.repos.d/updates.repo",
            "/etc/yum.repos.d/addons.repo",
            "/etc/yum.repos.d/extras.repo",
            "/etc/yum.repos.d/centosplus.repo",
@@ -71,7 +70,7 @@ class yum::centos::five {
         priority => 1,
     }
 
-    yumrepo {updates:
+    yum::managed_yumrepo {updates:
         descr => 'CentOS-$releasever - Updates',
         mirrorlist => 'http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=updates',
         gpgcheck => 1,
@@ -260,5 +259,40 @@ class yum::prerequisites {
     	group => 0,
 	    mode => '600',
     }
+}
+
+define yum::managed_yumrepo (
+    $descr = 'absent',
+    $baseurl = 'absent', 
+    $mirrorlist = 'absent',
+    $enabled = 0,
+    $gpgcheck = 0,
+    $gpgkey = 'absent', 
+    $failovermethod = 'absent',
+    $priority = 99){
+
+    # ensure that everything is setup
+    include yum::prerequisites
+    
+    file{"/etc/yum.repos.d/${name}.repo":
+        ensure => file,
+        replace => false,
+        before => Yumrepo[$name],
+        require => File[yum_repos_d],
+        mode => 0644, owner => root, group => 0;
+    }
+
+    yumrepo{$name:
+        descr => $descr,
+        baseurl => $baseurl, 
+        enabled => $enabled,
+        gpgcheck => $gpgcheck,
+        gpgkey => $gpgkey, 
+        failovermethod => $failovermethod,
+        priority => $priority,
+        require => [ File[rpm_gpg],
+            Package[yum-priorities]
+        ],
+    }    
 }
 
