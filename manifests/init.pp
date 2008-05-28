@@ -78,6 +78,7 @@ class yum::centos::five {
     }
 
     yum::managed_yumrepo {'rubyworks':
+        descr => 'Rubyworks for better Ruby stuff',
         baseurl => 'http://rubyworks.rubyforge.org/redhat/$releasever/RPMS/$basearch',
         enabled => 1,
         gpgcheck => 1,
