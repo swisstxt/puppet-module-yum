@@ -238,6 +238,7 @@ class yum::prerequisites {
         ensure => directory,
         recurse => true,
         purge => true,
+        require =>  Package[yum-priorities],
         mode => 0755, owner => root, group => 0;
     }
     #gpg key
@@ -270,7 +271,9 @@ define yum::managed_yumrepo (
         ensure => file,
         replace => false,
         before => Yumrepo[$name],
-        require => File[yum_repos_d],
+        require => [ File[yum_repos_d],
+             Package[yum-priorities]
+        ],
         mode => 0644, owner => root, group => 0;
     }
 
