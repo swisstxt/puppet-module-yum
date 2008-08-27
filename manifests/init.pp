@@ -106,9 +106,9 @@ class yum::centos::five {
     }
 
 
-    yum::managed_yumrepo { dlutter-rhel5:
+    yum::managed_yumrepo { dlutter-rhel:
         descr => 'Unsupported RHEL5 packages (lutter)',
-        baseurl => 'http://people.redhat.com/dlutter/yum/rhel/5/$basearch',
+        baseurl => 'http://people.redhat.com/dlutter/yum/rhel/$releasever/$basearch',
         enabled => 1,
         gpgcheck => 0,
         priority => 15,
