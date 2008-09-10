@@ -263,6 +263,7 @@ class yum::jpackage {
         gpgcheck => 1,
         gpgkey => 'http://www.jpackage.org/jpackage.asc',
         enabled => 1,
+        priority => 1,
     }
     yum::managed_yumrepo { 'jpackage-generic-nonfree':
         descr => 'JPackage (non-free), generic',
@@ -270,7 +271,8 @@ class yum::jpackage {
         failovermethod => 'priority',
         gpgcheck => 1,
         gpgkey => 'http://www.jpackage.org/jpackage.asc',
-        enabled => 0,
+        enabled => 1,
+        priority => 1,
     }
 }
 
