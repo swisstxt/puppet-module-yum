@@ -248,7 +248,7 @@ class yum::remi {
 
 class yum::jpackage {
     yum::managed_yumrepo { 'jpackage-generic':
-        desc => 'JPackage (free), generic',
+        descr => 'JPackage (free), generic',
         mirrorlist => 'http://www.jpackage.org/jpackage_generic_1.7.txt',
         failovermethod => 'priority',
         gpgcheck => 1,
