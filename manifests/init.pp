@@ -258,7 +258,7 @@ class yum::jpackage {
     }
     yum::managed_yumrepo { 'jpackage-rhel':
         descr => 'JPackage (free) for Red Hat Enterprise Linux $releasever',
-        mirrorlist => 'http://www.jpackage.org/jpackage_rhel-$releasever_1.7.txt',
+        mirrorlist => "http://www.jpackage.org/jpackage_rhel-${lsbmajdistrelease}_1.7.txt",
         failovermethod => 'priority',
         gpgcheck => 1,
         gpgkey => 'http://www.jpackage.org/jpackage.asc',
