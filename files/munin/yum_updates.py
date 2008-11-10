@@ -1,3 +1,4 @@
+# !/usr/bin/env python
 # Python helper script to query for the packages that have
 # pending updates. Called by the yum package provider
 #
