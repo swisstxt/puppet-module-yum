@@ -40,6 +40,9 @@ class yum {
         }
         default: { fail("no managed repo yet for this distro") }
     }
+    if $use_munin {
+        include yum::munin
+    }
 }
 
 class yum::centos::five {
