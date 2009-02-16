@@ -91,15 +91,6 @@ class yum::centos::five {
         priority => 2,
     }
 
-    yum::managed_yumrepo {'rubyworks':
-        descr => 'Rubyworks for better Ruby stuff',
-        baseurl => 'http://rubyworks.rubyforge.org/redhat/$releasever/RPMS/$basearch',
-        enabled => 1,
-        gpgcheck => 1,
-        gpgkey => 'file:///etc/pki/rpm-gpg/RubyWorks.GPG.key', 
-        priority => 1,
-    }
-
     yum::managed_yumrepo {contrib:
         descr => 'CentOS-$releasever - Contrib',
         mirrorlist => 'http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=contrib',
@@ -108,22 +99,6 @@ class yum::centos::five {
         priority => 10,
     }
 
-
-    yum::managed_yumrepo { dlutter-rhel:
-        descr => 'Unsupported RHEL5 packages (lutter)',
-        baseurl => 'http://people.redhat.com/dlutter/yum/rhel/$releasever/$basearch',
-        enabled => 1,
-        gpgcheck => 0,
-        priority => 15,
-    }
-
-    yum::managed_yumrepo { dlutter-source:
-        descr => 'Sources for additional test packages (lutter)',
-        baseurl => 'http://people.redhat.com/dlutter/yum/SRPMS/',
-        enabled => 1,
-        gpgcheck => 0,
-        priority => 15,
-    }
 
     yum::managed_yumrepo { rpmforge-rhel5:
         descr => 'RPMForge RHEL5 packages',
