@@ -7,4 +7,4 @@ class yum::centos::testing {
         gpgkey => 'http://dev.centos.org/centos/RPM-GPG-KEY-CentOS-testing',
         priority => 3,
     }
-T}
+}
