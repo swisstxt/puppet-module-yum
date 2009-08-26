@@ -3,7 +3,7 @@ class yum::prerequisites {
         ensure => present,
     } 
 
-	# ensure there are no other repos
+    # ensure there are no other repos
     file{yum_repos_d:
         path => '/etc/yum.repos.d/',
         source => "puppet://$server/yum/empty",
@@ -14,15 +14,16 @@ class yum::prerequisites {
         require =>  Package[yum-priorities],
         mode => 0755, owner => root, group => 0;
     }
-    #gpg key
-	file {rpm_gpg: 
-	    path => '/etc/pki/rpm-gpg/',
+
+    # gpg key
+    file {rpm_gpg: 
+        path => '/etc/pki/rpm-gpg/',
         source => [ "puppet://$server/yum/${operatingsystem}.${lsbdistrelease}/rpm-gpg/",
                     "puppet://$server/yum/CentOS.5/rpm-gpg/" ],
-	    recurse => true,
+        recurse => true,
         purge => true,
-		owner => root,
-    	group => 0,
-	    mode => '600',
+        owner => root,
+        group => 0,
+        mode => '600',
     }
 }
