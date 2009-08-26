@@ -25,16 +25,16 @@ class yum::centos::five {
         gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5',
         priority => 1,
     }
+
+    # priority 2
     yum::managed_yumrepo{extras:
         descr => 'CentOS-$releasever - Extras',
         mirrorlist => 'http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=extras',
         enabled => 1,
         gpgcheck => 1,
         gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5',
-        priority => 1,
+        priority => 2,
     }
-
-    # priority 2
     yum::managed_yumrepo{centosplus:
         descr => 'CentOS-$releasever - Centosplus',
         mirrorlist => 'http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=centosplus',
@@ -42,6 +42,18 @@ class yum::centos::five {
         gpgcheck => 1,
         gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5',
         priority => 2,
+    }
+
+    # priority 3
+    # # !!!! CAUTION !!!!
+    # This repository is a proving grounds for packages on their way to CentOSPlus and CentOS Extras.
+    yum::managed_yumrepo{testing:
+        descr => 'CentOS-$releasever - Testing',
+        mirrorlist => 'http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=extras',
+        enabled => 1,
+        gpgcheck => 1,
+        gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5',
+        priority => 3,
     }
 
     # priority 10
