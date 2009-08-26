@@ -47,12 +47,13 @@ class yum::centos::five {
     # priority 3
     # # !!!! CAUTION !!!!
     # This repository is a proving grounds for packages on their way to CentOSPlus and CentOS Extras.
+    # this is why it's disabled by default
     yum::managed_yumrepo{testing:
         descr => 'CentOS-$releasever - Testing',
-        mirrorlist => 'http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=extras',
-        enabled => 1,
+        baseurl => 'http://dev.centos.org/centos/$releasever/testing/$basearch',
+        enabled => 0,
         gpgcheck => 1,
-        gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5',
+        gpgkey => 'http://dev.centos.org/centos/RPM-GPG-KEY-CentOS-testing',
         priority => 3,
     }
 
