@@ -54,14 +54,6 @@ class yum::centos::five {
     }
 
     # priority 15
-    yum::managed_yumrepo{centos5-plus:
-        descr => 'CentOS-$releasever - Plus',
-        mirrorlist => 'http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=centosplus',
-        enabled => 1,
-        gpgcheck => 1,
-        gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-$releasever',
-        priority => 15,
-    }
     yum::managed_yumrepo{epel:
         descr => 'Extra Packages for Enterprise Linux $releasever - $basearch',
         mirrorlist => 'http://mirrors.fedoraproject.org/mirrorlist?repo=epel-$releasever&arch=$basearch',
