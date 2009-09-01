@@ -33,7 +33,7 @@ define yum::managed_yumrepo (
         failovermethod => $failovermethod,
         priority => $priority,
         exclude => $exclude,
-        inlcudepkgs => $inlcudepkgs,
+        includepkgs => $includepkgs,
         require => [ File[rpm_gpg],
             Package[yum-priorities]
         ],
