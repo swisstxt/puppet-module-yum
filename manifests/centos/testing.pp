@@ -5,7 +5,7 @@ class yum::centos::testing {
         enabled => 1,
         gpgcheck => 1,
         gpgkey => 'http://dev.centos.org/centos/RPM-GPG-KEY-CentOS-testing',
-        priority => 1,
+        priority => 0,
         includepkgs => 'php* mysql* postgresql*'
     }
 }
