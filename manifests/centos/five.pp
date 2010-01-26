@@ -152,7 +152,7 @@ class yum::centos::five {
     yum::managed_yumrepo{rpmforge-rhel5:
         descr => 'RPMForge RHEL5 packages',
         baseurl => 'http://wftp.tu-chemnitz.de/pub/linux/dag/redhat/el$releasever/en/$basearch/dag',
-        enabled => 1,
+        enabled => 0,
         gpgcheck => 1,
         gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag',
         priority => 30,
