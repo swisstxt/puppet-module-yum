@@ -64,7 +64,7 @@ class yum::centos::five {
         priority => 16,
     }
 
-    # priority 16
+    # priority 16 
     yum::managed_yumrepo{epel-debuginfo:
         descr => 'Extra Packages for Enterprise Linux $releasever - $basearch - Debug',
         mirrorlist => 'http://mirrors.fedoraproject.org/mirrorlist?repo=epel-$releasever&arch=$basearch',
