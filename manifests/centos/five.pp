@@ -155,7 +155,7 @@ class yum::centos::five {
         gpgcheck => 1,
         gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag',
         priority => 30,
-        }
+    }
     yum::managed_yumrepo{centos5-atrpms:
         descr => 'CentOS $releasever - $basearch - ATrpms',
         baseurl => 'http://dl.atrpms.net/el$releasever-$basearch/atrpms/stable',
