@@ -3,8 +3,9 @@
 #
 # Copyright 2008, admin(at)immerda.ch
 # Copyright 2008, Puzzle ITC GmbH
+# Copyright 2010, Atizo AG
 # Marcel Härry haerry+puppet(at)puzzle.ch
-# Simon Josi josi+puppet(at)puzzle.ch
+# Simon Josi simon.josi+puppet(at)atizo.com
 #
 # This program is free software; you can redistribute 
 # it and/or modify it under the terms of the GNU 
@@ -12,35 +13,29 @@
 # the Free Software Foundation.
 #
 
-#modules_dir { "yum": }
-
 class yum {
-    # autoupdate
-    package { yum-cron:
-        ensure => present
-    }
-
-    service { yum-cron:
-        enable => true,
-        ensure => running,
-        hasstatus => true,
-        hasrestart => true,
-        require => Package[yum-cron],
-    }
-
-    case $operatingsystem {
-        centos: {
-            case $lsbdistrelease {
-                5: { include yum::centos::five }
-                default: { 
-                    info("no class for this version yet defined, try to configure it with the version for 5")
-                    include yum::centos::five
-                }
-            }
-        }
-        default: { fail("no managed repo yet for this distro") }
-    }
-    if $use_munin {
-        include yum::munin
-    }
+  package{'yum-priorities':
+    ensure => present,
+  } 
+  # ensure there are no other repos
+  file{'yum_repos_d':
+    path => '/etc/yum.repos.d/',
+    source => "puppet://$server/modules/yum/empty",
+    ensure => directory,
+    recurse => true,
+    purge => true,
+    ignore => '\.ignore',
+    require =>  Package['yum-priorities'],
+    mode => 0755, owner => root, group => 0;
+  }
+  file{'rpm_gpg': 
+    path => '/etc/pki/rpm-gpg/',
+    source => "puppet://$server/modules/yum/$operatingsystem/rpm-gpg/",
+    recurse => true,
+    purge => true,
+    owner => root, group => 0, mode => '600';
+  }
+  if $use_munin {
+    include yum::munin
+  }
 }
