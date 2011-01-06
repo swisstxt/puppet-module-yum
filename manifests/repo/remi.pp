@@ -1,4 +1,4 @@
-class yum::remi($priority = 100) {
+class yum::repo::remi($priority = 100) {
   include yum
 
   yum::repo{'remi':
