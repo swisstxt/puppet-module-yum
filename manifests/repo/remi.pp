@@ -1,4 +1,7 @@
-class yum::repo::remi($priority = 100) {
+class yum::repo::remi(
+  $priority = 100,
+  $includepkgs = 'absent'
+) {
   include yum
 
   yum::repo{'remi':
@@ -8,5 +11,6 @@ class yum::repo::remi($priority = 100) {
     priority => $priority,
     gpgcheck => 1,
     gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi',
+    includepkgs => $includepkgs,
   }
 }
