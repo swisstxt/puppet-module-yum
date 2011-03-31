@@ -1,6 +1,6 @@
 class yum::repo::rpmforge(
   $priority = 30,
-  $installonlypkgs = undef
+  $includepkgs = 'absent'
 ) {
   include yum
 
@@ -10,11 +10,7 @@ class yum::repo::rpmforge(
     enabled => 1,
     priority => $priority,
     gpgcheck => 1,
+    includepkgs => $includepkgs,
     gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag',
-  }
-  if $installonlypkgs {
-    Yum::Repo['rpmforge']{
-      installonlypkgs => $installonlypkgs,
-    }
   }
 }
