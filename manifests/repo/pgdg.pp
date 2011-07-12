@@ -4,7 +4,7 @@ class yum::repo::pgdg(
   $version = '0.9'
 ) {
   include yum
-  if $version not in ['8.2','8.3','8.4','9.0'] {
+  if ! ($version in ['8.2','8.3','8.4','9.0']) {
     fail("Version '$version' is not supported by PGDG.")
   }
   yum::repo{"PostgreSQL $version $releasever - $basearch":
