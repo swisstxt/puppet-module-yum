@@ -9,7 +9,7 @@ class yum::repo::pgdg(
   }
   yum::repo{"pgdg":
     descr => 'PostgreSQL packages from yum.pgrpms.org',
-    baseurl => "http://yum.pgrpms.org/$version/redhat/rhel-$releasever-$basearch",
+    baseurl => "http://yum.pgrpms.org/$version/redhat/rhel-\$releasever-\$basearch",
     priority => $priority,
     includepkgs => $includepkgs,
     enabled => 1,
