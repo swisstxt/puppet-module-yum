@@ -8,7 +8,7 @@ class yum::repo::pgdg(
     fail("Version '$version' is not supported by PGDG.")
   }
   yum::repo{"PostgreSQL $version \$releasever - \$basearch":
-    descr => 'RPMForge RHEL5 packages',
+    descr => 'PostgreSQL packages from yum.pgrpms.org',
     baseurl => "http://yum.pgrpms.org/$version/redhat/rhel-$releasever-$basearch",
     priority => $priority,
     includepkgs => $includepkgs,
