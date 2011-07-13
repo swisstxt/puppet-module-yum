@@ -1,4 +1,5 @@
-class yum::repo::dist($priority = 1) {
+class yum::repo::dist {
+  $priority = 1
   include yum
   yum::repo{'centos-base':
     descr => 'CentOS-$releasever - Base',
