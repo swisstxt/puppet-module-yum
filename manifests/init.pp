@@ -38,4 +38,5 @@ class yum {
   if $use_munin {
     include yum::munin
   }
+  Yumrepo <| |> -> Package <| provider == yum |>
 }
