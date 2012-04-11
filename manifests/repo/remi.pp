@@ -1,6 +1,6 @@
 class yum::repo::remi(
   $priority = 100,
-  $includepkgs = 'absent'
+  $includepkgs = undef
 ) {
   include yum
 

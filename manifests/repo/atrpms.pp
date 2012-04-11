@@ -1,4 +1,7 @@
-class yum::repo::atrpms($priority = 30) {
+class yum::repo::atrpms(
+  $priority = 30,
+  $includepkgs = undef
+) {
   include yum
   yum::repo{'atrpms':
     descr => 'CentOS $releasever - $basearch - ATrpms',
@@ -6,6 +9,7 @@ class yum::repo::atrpms($priority = 30) {
     enabled => 1,
     priority => $priority,
     gpgcheck => 0,
+    includepkgs => $includepkgs,
     gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY.atrpms',
   }
 }

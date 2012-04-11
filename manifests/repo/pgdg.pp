@@ -1,6 +1,6 @@
 class yum::repo::pgdg(
   $priority = 30,
-  $includepkgs = 'absent',
+  $includepkgs = undef,
   $version = '0.9'
 ) {
   include yum

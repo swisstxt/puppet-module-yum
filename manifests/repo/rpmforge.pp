@@ -1,6 +1,6 @@
 class yum::repo::rpmforge(
   $priority = 15,
-  $includepkgs = 'absent'
+  $includepkgs = undef
 ) {
   include yum
 
