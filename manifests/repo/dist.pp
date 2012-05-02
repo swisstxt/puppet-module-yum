@@ -7,7 +7,7 @@ class yum::repo::dist {
     enabled => 1,
     priority => $priority,
     gpgcheck => 1,
-    gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-$releasever",
+    gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-$releasever',
   }
   yum::repo{'centos-updates':
     descr => 'CentOS-$releasever - Updates',
@@ -15,7 +15,7 @@ class yum::repo::dist {
     enabled => 1,
     priority => $priority,
     gpgcheck => 1,
-    gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-$releasever",
+    gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-$releasever',
   }
   yum::repo{'centos-addons':
     descr => 'CentOS-$releasever - Addons',
@@ -23,7 +23,7 @@ class yum::repo::dist {
     enabled => 0,
     priority => $priority,
     gpgcheck => 1,
-    gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-$releasever",
+    gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-$releasever',
   }
   yum::repo{'centos-extras':
     descr => 'CentOS-$releasever - Extras',
@@ -31,7 +31,7 @@ class yum::repo::dist {
     enabled => 0,
     priority => $priority,
     gpgcheck => 1,
-    gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-$releasever",
+    gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-$releasever',
   }
   yum::repo{'centos-centosplus':
     descr => 'CentOS-$releasever - Centosplus',
@@ -39,7 +39,7 @@ class yum::repo::dist {
     enabled => 0,
     priority => $priority,
     gpgcheck => 1,
-    gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-$releasever",
+    gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-$releasever',
   }
   yum::repo{'centos-contrib':
     descr => 'CentOS-$releasever - Contrib',
@@ -47,6 +47,6 @@ class yum::repo::dist {
     enabled => 0,
     priority => $priority,
     gpgcheck => 1,
-    gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-$releasever",
+    gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-$releasever',
   }
 }
