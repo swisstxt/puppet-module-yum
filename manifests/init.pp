@@ -16,6 +16,10 @@
 class yum {
   package{'yum-priorities':
     ensure => present,
+    name => $lsbmajdistrelease ? {
+      6 => 'yum-plugin-priorities',
+      5 => 'yum-priorities',
+    },
   } 
   # ensure there are no other repos
   file{'yum_repos_d':
