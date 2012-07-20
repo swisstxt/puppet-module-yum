@@ -1,6 +1,6 @@
 define yum::package::lock($version, $epoch = "") {
 
-  Class['yum::package::lock'] -> Class['yum::versionlock']
+  require yum::versionlock
 
   augeas {
     "${name}_yum_versionlock":
