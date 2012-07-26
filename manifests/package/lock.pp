@@ -4,7 +4,7 @@ define yum::package::lock($version, $epoch = "") {
 
   $change_version = "set version $version"
   $change_epoch = "set epoch $epoch"
-  if $epoch = '' {
+  if $epoch == '' {
     $changes = [ $change_version ]
   } else {
     # reverse order of commands fails, why?
