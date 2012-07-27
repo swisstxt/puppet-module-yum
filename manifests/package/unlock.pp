@@ -4,8 +4,11 @@ define yum::package::unlock {
 
   augeas {
     "${name}_yum_versionlock":
-      context => "/etc/yum/pluginconf.d/versionlock.list",
-      changes => [ "rm $name" ];
+      context   => '/files/etc/yum/pluginconf.d/versionlock.list',
+      incl      => '/etc/yum/pluginconf.d/versionlock.list',
+      lens      => 'YumVersionlock.lns',
+      load_path => '/var/lib/puppet/lib/augeas/lenses',
+      changes   => [ "rm $name" ];
   }
 
 }

@@ -2,8 +2,8 @@ define yum::package::lock($version, $epoch = "") {
 
   require yum::versionlock
 
-  $change_version = "set version $version"
-  $change_epoch = "set epoch $epoch"
+  $change_version = "set $name/version $version"
+  $change_epoch = "set $ame/epoch $epoch"
   if $epoch == '' {
     $changes = [ $change_version ]
   } else {
@@ -13,8 +13,11 @@ define yum::package::lock($version, $epoch = "") {
 
   augeas {
     "${name}_yum_versionlock":
-      context => "/etc/yum/pluginconf.d/versionlock.list/$name",
-      changes => $changes;
+      context   => '/files/etc/yum/pluginconf.d/versionlock.list',
+      incl      => '/etc/yum/pluginconf.d/versionlock.list',
+      lens      => 'YumVersionlock.lns',
+      load_path => '/var/lib/puppet/lib/augeas/lenses',
+      changes   => $changes;
   }
 
 }
