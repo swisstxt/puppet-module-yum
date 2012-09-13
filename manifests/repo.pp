@@ -17,7 +17,7 @@ define yum::repo(
     before => Yumrepo[$name],
     require => [
       File['yum_repos_d'],
-      Package['yum-priorities'],
+      #Package['yum-priorities'],
     ],
     mode => 0644, owner => root, group => 0;
   }
@@ -34,7 +34,7 @@ define yum::repo(
     includepkgs => $includepkgs,
     require => [
       File['rpm_gpg'],
-      Package['yum-priorities']
+      #Package['yum-priorities']
     ],
   }    
 }
