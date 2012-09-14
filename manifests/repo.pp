@@ -10,12 +10,12 @@ define yum::repo(
   $exclude = 'absent',
   $includepkgs = 'absent'
 ) {
-  include yum
   file{"/etc/yum.repos.d/$name.repo":
     ensure => file,
     replace => false,
     before => Yumrepo[$name],
     require => [
+      Class['yum'],
       File['yum_repos_d'],
       Package['yum-priorities'],
     ],
@@ -33,6 +33,7 @@ define yum::repo(
     exclude => $exclude,
     includepkgs => $includepkgs,
     require => [
+      Class['yum'],
       File['rpm_gpg'],
       Package['yum-priorities']
     ],

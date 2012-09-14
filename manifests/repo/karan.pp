@@ -1,5 +1,5 @@
 class yum::repo::karan($priority = 20) {
-  include yum
+  Class['yum::repo::karan'] <- Class['yum']
 
   yum::repo{'kbs-CentOS-Extras':
     descr => 'CentOS.Karan.Org-EL$releasever - Stable',

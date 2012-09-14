@@ -1,5 +1,5 @@
 class yum::repo::epel::debuginfo {
-  include yum
+  Class['yum::repo::epel::debuginfo'] <- Class['yum']
 
   yum::repo{'epel-debuginfo':
     descr => 'Extra Packages for Enterprise Linux $releasever - $basearch - Debug',

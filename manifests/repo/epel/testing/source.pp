@@ -1,5 +1,5 @@
 class yum::repo::epel::testing::source {
-  include yum
+  Class['yum::repo::epel::testing::source'] <- Class['yum']
 
   yum::repo{'epel-testing-source':
     descr => 'Extra Packages for Enterprise Linux $releasever - Testing - $basearch - Source',

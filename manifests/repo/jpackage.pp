@@ -1,5 +1,5 @@
 class yum::repo::jpackage {
-  include yum
+  Class['yum::repo::jpackage'] <- Class['yum']
 
   yum::repo{'jpackage-generic':
     descr => 'JPackage (free), generic',

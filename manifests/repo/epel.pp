@@ -1,5 +1,5 @@
 class yum::repo::epel {
-  include yum
+  Class['yum::repo::epel'] <- Class['yum']
 
   yum::repo{'epel':
     descr => 'Extra Packages for Enterprise Linux $releasever - $basearch',

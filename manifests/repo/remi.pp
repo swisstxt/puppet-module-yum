@@ -2,7 +2,7 @@ class yum::repo::remi(
   $priority = 100,
   $includepkgs = undef
 ) {
-  include yum
+  Class['yum::repo::remi'] <- Class['yum']
 
   yum::repo{'remi':
     descr => 'Les RPM de remi pour Enterpise Linux $releasever - $basearch',

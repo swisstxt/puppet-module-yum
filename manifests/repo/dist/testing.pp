@@ -1,5 +1,6 @@
 class yum::repo::dist::testing($priority = 1) {
-  include yum
+  Class['yum::repo::dist::testing'] <- Class['yum']
+
   yum::repo{'centos-testing':
     descr => 'CentOS-$releasever - Testing',
     baseurl => 'http://dev.centos.org/centos/$releasever/testing/$basearch',

@@ -3,7 +3,8 @@ class yum::repo::pgdg(
   $includepkgs = undef,
   $version = '0.9'
 ) {
-  include yum
+  Class['yum::repo::pgdg'] <- Class['yum']
+
   if ! ($version in ['8.2','8.3','8.4','9.0']) {
     fail("Version '$version' is not supported by PGDG.")
   }

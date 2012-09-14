@@ -2,7 +2,7 @@ class yum::repo::rpmforge(
   $priority = 15,
   $includepkgs = undef
 ) {
-  include yum
+  Class['yum::repo::rpmforge'] <- Class['yum']
 
   yum::repo{'rpmforge':
     descr => "RPMForge RHEL$releasever packages",

@@ -2,7 +2,8 @@ class yum::repo::atrpms::testing(
   $priority = 30,
   $includepkgs = undef
 ) {
-  include yum
+  Class['yum::repo::atrpms::testing'] <- Class['yum']
+
   yum::repo{'atrpms-testing':
     descr => 'CentOS $releasever - $basearch - ATrpms - Testing',
     baseurl => 'http://dl.atrpms.net/el$releasever-$basearch/atrpms/testing',

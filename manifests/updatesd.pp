@@ -1,5 +1,6 @@
 class yum::updatesd {
-  include yum
+  Class['yum::updatesd'] <- Class['yum']
+
   package{'yum-updatesd':
     ensure => present,
   }

@@ -1,6 +1,7 @@
 class yum::repo::dist {
+  Class['yum::repo::dist'] <- Class['yum']
+
   $priority = 1
-  include yum
   yum::repo{'centos-base':
     descr => 'CentOS-$releasever - Base',
     mirrorlist => 'http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=os',

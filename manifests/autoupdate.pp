@@ -1,5 +1,6 @@
 class yum::autoupdate {
-  include yum
+  Class['yum::autoupdate'] <- Class['yum']
+
   package{'yum-cron':
       ensure => present
   }
