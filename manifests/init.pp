@@ -20,7 +20,11 @@ class yum {
       6 => 'yum-plugin-priorities',
       5 => 'yum-priorities',
     },
-  } 
+  }
+
+  # manage this package before any yum repositories
+  Package['yum-priorities'] -> Yumrepo <||> 
+
   # ensure there are no other repos
   file{'yum_repos_d':
     path => '/etc/yum.repos.d/',

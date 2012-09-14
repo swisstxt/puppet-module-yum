@@ -10,7 +10,7 @@ define yum::repo(
   $exclude = 'absent',
   $includepkgs = 'absent'
 ) {
-  require yum
+  include yum
   file{"/etc/yum.repos.d/$name.repo":
     ensure => file,
     replace => false,
