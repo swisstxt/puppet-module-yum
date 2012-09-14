@@ -14,11 +14,7 @@
 #
 
 class yum {
-  stage{'yum':
-    before => Stage['main'],
-  }
   package{'yum-priorities':
-    stage => 'yum',
     ensure => present,
     name => $lsbmajdistrelease ? {
       6 => 'yum-plugin-priorities',
@@ -27,7 +23,6 @@ class yum {
   } 
   # ensure there are no other repos
   file{'yum_repos_d':
-    stage => 'yum',
     path => '/etc/yum.repos.d/',
     source => "puppet://$server/modules/yum/empty",
     ensure => directory,
@@ -38,7 +33,6 @@ class yum {
     mode => 0755, owner => root, group => 0;
   }
   file{'rpm_gpg': 
-    stage => 'yum',
     path => '/etc/pki/rpm-gpg/',
     source => "puppet://$server/modules/yum/$operatingsystem/rpm-gpg/",
     recurse => true,

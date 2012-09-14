@@ -12,7 +12,6 @@ define yum::repo(
 ) {
   require yum
   file{"/etc/yum.repos.d/$name.repo":
-    stage => 'yum',
     ensure => file,
     replace => false,
     before => Yumrepo[$name],
@@ -23,7 +22,6 @@ define yum::repo(
     mode => 0644, owner => root, group => 0;
   }
   yumrepo{$name:
-    stage => 'yum',
     descr => $descr,
     baseurl => $baseurl, 
     mirrorlist => $mirrorlist,
