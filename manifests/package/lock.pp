@@ -3,7 +3,7 @@ define yum::package::lock($version, $epoch = "") {
   require yum::versionlock
 
   $change_version = "set $name/version $version"
-  $change_epoch = "set $ame/epoch $epoch"
+  $change_epoch = "set $name/epoch $epoch"
   if $epoch == '' {
     $changes = [ $change_version ]
   } else {
