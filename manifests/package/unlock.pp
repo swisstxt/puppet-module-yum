@@ -1,6 +1,6 @@
 define yum::package::unlock {
 
-  Class['yum::package::unlock'] -> Class['yum::versionlock']
+  require yum::versionlock
 
   augeas {
     "${name}_yum_versionlock":
