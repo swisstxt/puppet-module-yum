@@ -1,7 +1,13 @@
 class yum::versionlock {
 
+  if $lsbmajdistrelease == '6' {
+    $package_name = 'yum-plugin-versionlock'
+  } else {
+    $package_name = 'yum-versionlock'
+  }
+
   package {
-    'yum-versionlock':
+    $package_name:
       ensure => present;
   }
   
