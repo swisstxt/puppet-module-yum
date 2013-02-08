@@ -10,8 +10,8 @@ class yum::repo::rpmforge(
     mirrorlist => 'http://apt.sw.be/redhat/el$releasever/en/mirrors-rpmforge',
     enabled => 1,
     priority => $priority,
-    gpgcheck => 1,
     includepkgs => $includepkgs,
+    gpgcheck => 1,
     gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag',
   }
   yum::repo{'rpmforge-extras':
@@ -20,8 +20,8 @@ class yum::repo::rpmforge(
     mirrorlist => 'http://apt.sw.be/redhat/el$releasever/en/mirrors-rpmforge-extras',
     enabled => 1,
     priority => $priority,
-    gpgcheck => 1,
     includepkgs => $includepkgs,
+    gpgcheck => 1,
     gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag',
   }
 }
