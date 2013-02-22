@@ -39,5 +39,7 @@ class yum {
   }
 
   # ensure that all yum repos are managed before any non-yum packages
-  Package <| (title != yum-priorities and title != yum-cron and title != yum-updatesd) |> <- Yumrepo <||>
+  Package <| (title != yum-priorities and title != yum-cron and title != yum-updatesd) |> <- 
+  Yumrepo <||> <-
+  File['rpm_gpg']
 }
