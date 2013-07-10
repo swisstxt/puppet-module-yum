@@ -1,15 +1,16 @@
+# lock a package to a specific version
 define yum::versionlock($ensure, $epoch = '') {
-
+  require yum
   require yum::package::versionlock
 
   if $ensure == 'absent' {
-    $changes = [ "rm $name" ]
+    $changes = [ "rm ${name}" ]
   } else {
     if $epoch == '' {
-      $changes = [ "set ${name}/version $ensure" ]
+      $changes = [ "set ${name}/version ${ensure}" ]
     } else {
       # reverse order of commands fails, why?
-      $changes = [ "set ${name}/epoch $epoch", "set ${name}/version $ensure" ]
+      $changes = [ "set ${name}/epoch ${epoch}", "set ${name}/version ${ensure}" ]
     }
   }
 

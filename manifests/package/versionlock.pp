@@ -1,3 +1,4 @@
+# install yum versionlock plugin
 class yum::package::versionlock {
 
   if $::lsbmajdistrelease == '6' {
@@ -6,9 +7,8 @@ class yum::package::versionlock {
     $package_name = 'yum-versionlock'
   }
 
-  package {
-    $package_name:
-      ensure => present;
+  package {$package_name:
+    ensure => present;
   }
-  
+
 }
