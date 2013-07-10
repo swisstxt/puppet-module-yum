@@ -12,7 +12,7 @@ class yum::repo::jpackage {
   }
   yum::repo{'jpackage-rhel':
     descr => 'JPackage (free) for Red Hat Enterprise Linux $releasever',
-    mirrorlist => "http://www.jpackage.org/jpackage_rhel-${lsbmajdistrelease}_1.7.txt",
+    mirrorlist => "http://www.jpackage.org/jpackage_rhel-${::lsbmajdistrelease}_1.7.txt",
     failovermethod => 'priority',
     enabled => 1,
     priority => 1,

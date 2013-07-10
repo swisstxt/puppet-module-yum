@@ -19,7 +19,7 @@ class yum {
   # ensure there are no other repos
   file{'yum_repos_d':
     path => '/etc/yum.repos.d/',
-    source => "puppet://$server/modules/yum/empty",
+    source => 'puppet:///modules/yum/empty',
     ensure => directory,
     recurse => true,
     purge => true,
@@ -29,7 +29,7 @@ class yum {
   }
   file{'rpm_gpg': 
     path => '/etc/pki/rpm-gpg/',
-    source => "puppet://$server/modules/yum/$operatingsystem/rpm-gpg/",
+    source => "puppet:///modules/yum/${::operatingsystem}/rpm-gpg/",
     recurse => true,
     purge => true,
     owner => root, group => 0, mode => '600';
@@ -37,7 +37,7 @@ class yum {
   file {'/etc/yum.conf':
     ensure => 'present';
   }
-  if $use_munin {
+  if $::use_munin {
     include yum::munin
   }
 

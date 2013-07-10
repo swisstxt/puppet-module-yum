@@ -1,7 +1,7 @@
 class yum::priorities {
   package{'yum-priorities':
     ensure => present,
-    name => $lsbmajdistrelease ? {
+    name => $::lsbmajdistrelease ? {
       6 => 'yum-plugin-priorities',
       5 => 'yum-priorities',
     },
