@@ -34,6 +34,9 @@ class yum {
     purge => true,
     owner => root, group => 0, mode => '600';
   }
+  file {'/etc/yum.conf':
+    ensure => 'present';
+  }
   if $use_munin {
     include yum::munin
   }
