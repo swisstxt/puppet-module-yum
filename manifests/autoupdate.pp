@@ -11,7 +11,7 @@ class yum::autoupdate (
   Package['yum-cron'] <- Yumrepo <||>
 
   service { 'yum-cron':
-    ensure     => running,
+    ensure     => $enable,
     enable     => $enable,
     hasstatus  => true,
     hasrestart => true,
