@@ -15,6 +15,7 @@
 
 class yum {
   include yum::priorities
+  include yum::protectbase
 
   # ensure there are no other repos
   file{'yum_repos_d':
@@ -42,7 +43,7 @@ class yum {
   }
 
   # ensure that all yum repos are managed before any non-yum packages
-  Package <| (title != yum-priorities and title != yum-cron and title != yum-updatesd) |> <- 
+  Package <| (title != yum-priorities and title != yum-protectbase and title != yum-cron and title != yum-updatesd) |> <- 
   Yumrepo <||> <-
   File['rpm_gpg']
 }
