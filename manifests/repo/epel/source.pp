@@ -7,7 +7,10 @@ class yum::repo::epel::source {
     enabled => 1,
     gpgcheck => 1,
     failovermethod => 'priority',
-    gpgkey => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL',
+    gpgkey => ${::lsbmajdistrelease} ? {
+      5 => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL',
+      6 => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6',
+    },
     priority => 15,
   }
 }
