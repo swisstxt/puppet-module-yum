@@ -19,7 +19,7 @@ define yum::repo(
       File['yum_repos_d'],
       Package['yum-priorities'],
     ],
-    mode => 0644, owner => root, group => 0;
+    mode => '0644', owner => root, group => 0;
   }
   yumrepo{$name:
     descr => $descr,

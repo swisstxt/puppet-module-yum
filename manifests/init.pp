@@ -13,7 +13,9 @@
 # the Free Software Foundation.
 #
 
-class yum {
+class yum(
+  $purge_unmanaged_repos = true,
+) {
   include yum::priorities
   include yum::protectbase
 
@@ -23,17 +25,23 @@ class yum {
     source => 'puppet:///modules/yum/empty',
     ensure => directory,
     recurse => true,
-    purge => true,
+    purge => $purge_unmanaged_repos ? {
+      false   => false,
+      default => true,
+    },
     ignore => '\.ignore',
     require => Package['yum-priorities'],
-    mode => 0755, owner => root, group => 0;
+    mode => 0644, owner => root, group => 0;
   }
   file{'rpm_gpg': 
     path => '/etc/pki/rpm-gpg/',
     source => "puppet:///modules/yum/${::operatingsystem}/rpm-gpg/",
     recurse => true,
-    purge => true,
-    owner => root, group => 0, mode => '600';
+    purge => $purge_unmanaged_repos ? {
+      false   => false,
+      default => true,
+    },
+    owner => root, group => 0, mode => '0644';
   }
   file {'/etc/yum.conf':
     ensure => 'present';
